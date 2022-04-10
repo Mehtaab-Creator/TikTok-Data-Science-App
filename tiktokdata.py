@@ -13,21 +13,21 @@ trending = []
 #finding users with a specific name
 for user in api.search.users("TheRock"):
     print(user.as_dict)
-    users.append(user)
+    users.append(user.as_dict)
     #exporting the list into a json file
-    #with open('user_export.json', 'w') as f:
-        #json.dump(users, f)
+    
 
-#pulling out trending video statistics
-for trending_video in api.trending.videos():
-    user_stats = trending_video.author.info_full['stats']
-    trending.append(trending_video)
-    #exporting the list into a json file
-    #with open('stats_export.json', 'w') as f:
-        #json.dump(trending, f)
+#pulling out specific hashtag
+for video in api.hashtag(name='funny').videos():
+    print(video.as_dict)
+    trending.append(video.as_dict)
+ 
+    
+with open('trending_export.json', 'w') as f:
+        json.dump(trending, f)
 
 with open('user_export.json', 'w') as f:
         json.dump(users, f)
 
-print(trending)
-print(users)
+#print(trending)
+#print(users)
